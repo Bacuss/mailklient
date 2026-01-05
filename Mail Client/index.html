@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mail UI (Apple-like) – Skeleton</title>
+
+  <!-- CSS: vlastní styly -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- ============================
+    APP WRAPPER (CELÁ APLIKACE)
+    ============================ -->
+  <div class="app">
+
+    <!-- ============================
+      1) SIDEBAR (LEVÁ NAVIGACE)
+      ============================ -->
+    <aside class="sidebar">
+
+      <!-- ACCOUNT / PROFILE SWITCHER -->
+      <div class="account">
+        <button class="account-trigger" type="button" aria-haspopup="menu" aria-expanded="false">
+          <span class="account-name" id="currentAccountName">Profi-DJ</span>
+          <span class="account-caret" aria-hidden="true">▾</span>
+        </button>
+
+        <div class="account-menu" role="menu" aria-label="Přepnout profil" hidden>
+          <button class="account-item active" role="menuitem" type="button" data-account="work">
+            Profi-DJ <span class="account-item-meta">Work</span>
+          </button>
+          <button class="account-item" role="menuitem" type="button" data-account="private">
+            Osobní <span class="account-item-meta">Private</span>
+          </button>
+
+          <div class="account-sep" aria-hidden="true"></div>
+
+          <button class="account-item manage" role="menuitem" type="button">
+            Spravovat profily…
+          </button>
+        </div>
+      </div>
+
+      <!-- Inbox -->
+      <div class="nav-item active" role="button" aria-label="Inbox">
+  <div class="nav-left">
+    <div class="nav-icon">📥</div>
+    <div class="nav-label">Inbox</div>
+  </div>
+  <div class="nav-badge" id="inboxBadge">0</div>
+</div>
+
+
+      <div class="divider"></div>
+
+      <!-- PROFIL: WORK -->
+      <div class="profile-scope" data-account="work">
+
+        <div class="nav-group">
+          <div class="nav-title">Ondra</div>
+
+          <div class="nav-item indent" role="button">
+            <div class="nav-left"><div class="nav-icon">📁</div><div class="nav-label">Odložené</div></div>
+            <div class="nav-badge">33</div>
+          </div>
+
+          <div class="nav-item indent" role="button">
+            <div class="nav-left"><div class="nav-icon">📁</div><div class="nav-label">Přiřazené</div></div>
+            <div class="nav-badge">6</div>
+          </div>
+
+          <div class="nav-item indent" role="button">
+            <div class="nav-left"><div class="nav-icon">📁</div><div class="nav-label">Schránka</div></div>
+            <div class="nav-badge">0</div>
+          </div>
+
+          <div class="nav-item indent" role="button">
+            <div class="nav-left"><div class="nav-icon">📁</div><div class="nav-label">Vyřešené</div></div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="nav-group">
+          <div class="nav-title">Email</div>
+
+          <div class="nav-item indent" role="button">
+            <div class="nav-left"><div class="nav-icon">✉️</div><div class="nav-label">CZ</div></div>
+            <div class="nav-badge">333</div>
+          </div>
+
+          <div class="nav-item indent" role="button">
+            <div class="nav-left"><div class="nav-icon">✉️</div><div class="nav-label">SK</div></div>
+            <div class="nav-badge">211</div>
+          </div>
+
+          <div class="nav-item indent" role="button">
+            <div class="nav-left"><div class="nav-icon">✉️</div><div class="nav-label">PL</div></div>
+            <div class="nav-badge">51</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="nav-group">
+          <div class="nav-title">Systémové</div>
+
+          <div class="nav-item" role="button">
+            <div class="nav-left"><div class="nav-icon">🚫</div><div class="nav-label">Spam</div></div>
+            <div class="nav-badge">7</div>
+          </div>
+
+          <div class="nav-item" role="button">
+            <div class="nav-left"><div class="nav-icon">🗑️</div><div class="nav-label">Koš</div></div>
+            <div class="nav-badge">24</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PROFIL: PRIVATE -->
+      <div class="profile-scope" data-account="private" hidden>
+
+        <div class="nav-group">
+          <div class="nav-title">Osobní mail</div>
+
+          <div class="nav-item" role="button">
+            <div class="nav-left"><div class="nav-icon">📁</div><div class="nav-label">Doručená pošta</div></div>
+            <div class="nav-badge">12</div>
+          </div>
+
+          <div class="nav-item" role="button">
+            <div class="nav-left"><div class="nav-icon">📁</div><div class="nav-label">Rodina</div></div>
+            <div class="nav-badge">3</div>
+          </div>
+
+          <div class="nav-item" role="button">
+            <div class="nav-left"><div class="nav-icon">📁</div><div class="nav-label">Faktury</div></div>
+            <div class="nav-badge">1</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="nav-group">
+          <div class="nav-title">Systémové</div>
+
+          <div class="nav-item" role="button">
+            <div class="nav-left"><div class="nav-icon">🚫</div><div class="nav-label">Spam</div></div>
+            <div class="nav-badge">2</div>
+          </div>
+
+          <div class="nav-item" role="button">
+            <div class="nav-left"><div class="nav-icon">🗑️</div><div class="nav-label">Koš</div></div>
+            <div class="nav-badge">5</div>
+          </div>
+        </div>
+
+      </div>
+
+    </aside>
+
+    <!-- ============================
+      2) THREAD LIST (SEZNAM KONVERZACÍ)
+      ============================ -->
+    <section class="list">
+      <div class="list-header">
+        <div class="list-title">Inbox</div>
+        <input class="search" type="search" placeholder="Hledat…" aria-label="Search" />
+      </div>
+
+      <div class="thread active" role="button" data-thread-id="t1">
+        <div class="thread-top">
+  <div class="thread-name">Kristína Pernišová</div>
+
+  <div class="thread-right">
+    <div class="thread-time">09:24</div>
+    <div class="thread-agent">Ondra</div>
+  </div>
+</div>
+
+        <div class="thread-subject">Re: info obj. č. 2002000</div>
+        <div class="thread-meta">
+  <span class="dot"></span>
+  <span class="tag"></span>
+</div>
+
+      </div>
+
+      <div class="thread" role="button" data-thread-id="t2">
+        <div class="thread-top">
+          <div class="thread-name">Lukáš Preizler</div>
+          
+          <div class="thread-right">
+    <div class="thread-time">09:24</div>
+    <div class="thread-agent">Ondra</div>
+  </div>
+          
+        </div>
+        <div class="thread-subject">Re: Objednávku 102428…</div>
+        <div class="thread-meta">
+          <span class="dot" title="Open"></span>
+         <span class="thread-state">Otevřeno</span>
+        </div>
+      </div>
+
+      <div class="thread" role="button" data-thread-id="t3">
+        <div class="thread-top">
+          <div class="thread-name">Věra Žitková</div>
+          
+          <div class="thread-right">
+    <div class="thread-time">09:24</div>
+    <div class="thread-agent">Ondra</div>
+  </div>
+        </div>
+        <div class="thread-subject">Vrácená zásilka – Objednávka…</div>
+        <div class="thread-meta">
+          <span class="dot" title="Open"></span>
+          <span class="thread-state">Otevřeno</span>
+          <span>·</span>
+          <span>operativní-dotazy</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+      3) CONTENT (ZPRÁVA + INSPECTOR)
+      ============================ -->
+    <section class="content">
+
+      <main class="message">
+
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <button class="btn" type="button">↩ Odpovědět</button>
+            <button class="btn" type="button">↪ Přeposlat</button>
+          </div>
+
+          <div class="toolbar-right">
+            <button class="btn btn-resolve" type="button">✓ Vyřešit</button>
+            <!-- ASSIGN DROPDOWN -->
+            <div class="assign">
+              <button class="btn assign-trigger" type="button" aria-haspopup="menu" aria-expanded="false">
+                👤 <span id="assignBtnLabel">Přiřadit</span>
+                <span aria-hidden="true" style="color:var(--muted);">▾</span>
+              </button>
+
+              <div class="assign-menu" role="menu" aria-label="Přiřadit agentovi" hidden>
+                <button class="assign-item active" role="menuitem" type="button" data-agent="Ondra">Ondra</button>
+                <button class="assign-item" role="menuitem" type="button" data-agent="David">David</button>
+                <button class="assign-item" role="menuitem" type="button" data-agent="Petr">Petr</button>
+                <button class="assign-item" role="menuitem" type="button" data-agent="Zdeněk">Zdeněk</button>
+                <button class="assign-item" role="menuitem" type="button" data-agent="Máša">Máša</button>
+
+                <div class="assign-sep" aria-hidden="true"></div>
+
+                <button class="assign-item" role="menuitem" type="button" data-agent="Unassigned">Odebrat přiřazení</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <header class="msg-header">
+  <div class="msg-from" id="msgFrom">Kristína Pernišová</div>
+  <div class="msg-email" id="msgEmail">kristina.pernisova@gmail.com</div>
+  <div class="msg-subject" id="msgSubject">Re: info obj. č. 2002000</div>
+  <div class="hr"></div>
+</header>
+
+<article class="msg-body" id="msgBody">
+  <p>Dobrý deň,</p>
+  <p>chcela by som sa informovať o stave objednávky...</p>
+  <p>Ďakujem<br> S pozdravom<br> Pernišová</p>
+</article>
+
+
+        <details class="automation">
+          <summary>Automation activity</summary>
+          <ul>
+            <li>Tag applied: to-process</li>
+            <li>Assigned to: Ondra</li>
+            <li>Auto-reply sent</li>
+          </ul>
+        </details>
+
+        <section class="composer" aria-label="Editor odpovědi">
+          <textarea placeholder="Odpověď… (napiš / pro výběr šablony)"></textarea>
+          <div class="composer-footer">
+            <div>⌘ + Enter odeslat</div>
+            <div>
+              <button class="btn" type="button">Uložit koncept</button>
+              <button class="btn btn-primary" type="button">Odeslat</button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <aside class="inspector">
+        <div class="ins-title">Conversation info</div>
+
+       <div class="field">
+  <div class="field-label">Status</div>
+  <div class="field-value" id="statusValue">Otevřeno</div>
+</div>
+
+
+
+
+        <div class="field">
+          <div class="field-label">Přiřazený agent</div>
+          <div class="field-value" id="assignedAgentValue">Ondra</div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">Priorita</div>
+          <div class="field-value">Žádná</div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">Tagy</div>
+          <div class="field-value">
+            <span class="tag">stav-změna-objednávky</span>
+            <span class="tag">dotazy-k-produktu</span>
+          </div>
+        </div>
+
+        <div class="ins-title" style="margin-top:16px;">Makra</div>
+
+        <div class="field">
+          <div class="field-label">Rychlé akce</div>
+          <div class="field-value" style="display:flex; flex-direction:column; gap:8px;">
+            <button class="btn" type="button">Vyřešeno</button>
+            <button class="btn" type="button">Přeposlat Davidovi</button>
+            <button class="btn" type="button">Přeposlat účetní</button>
+            <button class="btn" type="button">Přeposlat Zdenymu</button>
+            <button class="btn" type="button">Přeposlat Petrovi</button>
+            <button class="btn" type="button">Přeposlat Mášovi</button>
+            <button class="btn" type="button">Přeposlat Ondrovi</button>
+          </div>
+        </div>
+      </aside>
+
+    </section>
+  </div>
+
+  <!-- JS: vlastní logika -->
+  <script src="app.js"></script>
+</body>
+</html>
